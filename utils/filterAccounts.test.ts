@@ -31,38 +31,38 @@ describe("filterAccounts", () => {
   ];
 
   it("should filter accounts based on default options", () => {
-    const result = filterAccounts({}, mockAccounts);
-    expect(result).toEqual(mockAccounts);
+    const { filteredAndPaginatedAccounts } = filterAccounts({}, mockAccounts);
+    expect(filteredAndPaginatedAccounts).toEqual(mockAccounts);
   });
 
   it("should filter accounts based on minBalance", () => {
-    const result = filterAccounts(
+    const { filteredAndPaginatedAccounts } = filterAccounts(
       {
         minBalance: 123132,
       },
       mockAccounts
     );
-    expect(result).toEqual([mockAccounts[1]]);
+    expect(filteredAndPaginatedAccounts).toEqual([mockAccounts[1]]);
   });
 
   it("should filter accounts based on maxBalance", () => {
-    const result = filterAccounts(
+    const { filteredAndPaginatedAccounts } = filterAccounts(
       {
         maxBalance: 123132,
       },
       mockAccounts
     );
-    expect(result).toEqual([mockAccounts[0]]);
+    expect(filteredAndPaginatedAccounts).toEqual([mockAccounts[0]]);
   });
 
   it("should filter accounts based on both maxBalance and minBalance", () => {
-    const result = filterAccounts(
+    const { filteredAndPaginatedAccounts } = filterAccounts(
       {
         maxBalance: 123132,
         minBalance: 123131,
       },
       mockAccounts
     );
-    expect(result).toEqual([]);
+    expect(filteredAndPaginatedAccounts).toEqual([]);
   });
 });
