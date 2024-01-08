@@ -38,6 +38,8 @@ const AccountDropdown: React.FC<AccountDropdownProps> = ({
     onSelectAccount(selectedAccountId);
   };
 
+  if (isLoading) return "Loading...";
+
   return (
     <div>
       <label htmlFor="account">Select Account:</label>
