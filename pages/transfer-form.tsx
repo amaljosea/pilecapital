@@ -14,6 +14,7 @@ export default function TransferFormPage() {
   const { mutate } = useMutation({
     onSuccess: (data) => {
       if (data.success) {
+        alert("Form submitted!");
         router.push("/");
       }
     },
