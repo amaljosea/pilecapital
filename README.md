@@ -2,9 +2,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## To run locally
 
-- 1. To install dependencies: `npm i`
-- 2. To start the development server: `npm run dev`
-- 3. To run unit tests: `npm run test`
+- To install dependencies: `npm i`
+- To start the development server: `npm run dev`
+- To run unit tests: `npm run test`
 - Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Production
