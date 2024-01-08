@@ -1,13 +1,21 @@
 import TransferForm, { TransferFormData } from "@/components/TransferForm";
 import { useMutation, useQuery } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 export default function TransferFormPage() {
+  const router = useRouter();
+
   const { isLoading, error, data } = useQuery<{ accounts: Account[] }>({
     queryKey: ["accounts"],
     queryFn: () => fetch("/api/accounts").then((res) => res.json()),
   });
 
   const { mutate } = useMutation({
+    onSuccess: (data) => {
+      if (data.success) {
+        router.push("/");
+      }
+    },
     mutationFn: (values: TransferFormData) =>
       fetch("/api/transfer-form", {
         headers: {
