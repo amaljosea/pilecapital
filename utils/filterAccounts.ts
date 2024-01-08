@@ -8,7 +8,8 @@ interface FilterOptions {
 export const filterAccounts = (
   options: FilterOptions,
   accounts: Account[]
-): Account[] => {
+): { filteredAndPaginatedAccounts: Account[]; totalCount: number } => {
+  console.log("options", options);
   const {
     offset = 0,
     limit = accounts.length,
@@ -16,11 +17,15 @@ export const filterAccounts = (
     maxBalance = Number.MAX_SAFE_INTEGER,
   } = options;
 
-  return accounts
-    .slice(offset, offset + limit)
-    .filter(
-      (account) =>
-        account.balances.available.value >= minBalance &&
-        account.balances.available.value <= maxBalance
-    );
+  const filterd = accounts.filter(
+    (account) =>
+      account.balances.available.value >= minBalance &&
+      account.balances.available.value <= maxBalance
+  );
+  const filteredAndPaginatedAccounts = filterd.slice(offset, offset + limit);
+
+  return {
+    filteredAndPaginatedAccounts,
+    totalCount: filterd.length,
+  };
 };
