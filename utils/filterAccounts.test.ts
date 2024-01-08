@@ -1,5 +1,3 @@
-// filterAccounts.test.js
-
 import { filterAccounts } from "./filterAccounts";
 
 describe("filterAccounts", () => {
