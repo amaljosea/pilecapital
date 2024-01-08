@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
+import { useForm, SubmitHandler, FieldValues, useWatch } from "react-hook-form";
 
 export interface TransferFormData {
   sourceAccount: string;
@@ -33,7 +33,13 @@ const TransferForm: React.FC<TransferFormProps> = ({ onSubmit, accounts }) => {
         id="sourceAccount"
         {...register("sourceAccount", { required: true })}
       >
-        {accounts.map((account) => (
+        {[
+          {
+            name: null,
+            id: undefined,
+          },
+          ...accounts,
+        ].map((account) => (
           <option key={account.id} value={account.id}>
             {account.name}
           </option>
