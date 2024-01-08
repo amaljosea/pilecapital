@@ -1,3 +1,4 @@
+import AccountDropdown from "@/components/AccountDropdown";
 import { useQuery } from "@tanstack/react-query";
 
 export default function Home() {
@@ -11,6 +12,11 @@ export default function Home() {
       className={`flex min-h-screen flex-col items-center justify-between p-24`}
     >
       <div>
+        <AccountDropdown
+          onSelectAccount={(id) => {
+            console.log("id", id);
+          }}
+        />
         {data?.accounts.map((i) => (
           <div key={i.id}>{i.IBAN}</div>
         ))}
