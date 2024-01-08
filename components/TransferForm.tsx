@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm, SubmitHandler, FieldValues } from "react-hook-form";
 
-interface TransferFormData {
+export interface TransferFormData {
   sourceAccount: string;
   amount: number;
   recipientName: string;

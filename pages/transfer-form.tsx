@@ -1,11 +1,22 @@
-import AccountDropdown from "@/components/AccountDropdown";
-import TransferForm from "@/components/TransferForm";
-import { useQuery } from "@tanstack/react-query";
+import TransferForm, { TransferFormData } from "@/components/TransferForm";
+import { useMutation, useQuery } from "@tanstack/react-query";
 
 export default function TransferFormPage() {
   const { isLoading, error, data } = useQuery<{ accounts: Account[] }>({
     queryKey: ["accounts"],
     queryFn: () => fetch("/api/accounts").then((res) => res.json()),
+  });
+
+  const { mutate } = useMutation({
+    mutationFn: (values: TransferFormData) =>
+      fetch("/api/transfer-form", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify(values),
+      }).then((res) => res.json()),
   });
 
   if (isLoading) return "Loading...";
@@ -14,8 +25,8 @@ export default function TransferFormPage() {
 
   return (
     <TransferForm
-      onSubmit={(value) => {
-        console.log("values", value);
+      onSubmit={(values) => {
+        mutate(values);
       }}
       accounts={data?.accounts}
     />
