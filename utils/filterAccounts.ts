@@ -9,7 +9,6 @@ export const filterAccounts = (
   options: FilterOptions,
   accounts: Account[]
 ): { filteredAndPaginatedAccounts: Account[]; totalCount: number } => {
-  console.log("options", options);
   const {
     offset = 0,
     limit = accounts.length,

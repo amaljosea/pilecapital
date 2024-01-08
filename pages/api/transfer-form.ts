@@ -13,6 +13,6 @@ export default function handler(
     res.status(405).send({ error: "Only POST requests allowed" });
     return;
   }
-  console.log(req.body);
+  console.log("Transfer form data is: ", req.body);
   res.status(200).json({ success: true });
 }
